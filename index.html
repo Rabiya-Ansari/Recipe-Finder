@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YaarCookKya?</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- tailwind/DaisyUI  -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css"/>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Remix  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css" integrity="sha512-kJlvECunwXftkPwyvHbclArO8wszgBGisiLeuDFwNM8ws+wKIw0sv1os3ClWZOcrEB2eRXULYUsm8OVRGJKwGA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" integrity="sha512-XcIsjKMcuVe0Ucj/xgIXQnytNwBttJbNjltBV18IOnru2lDPe9KRRyvCXw6Y5H415vbBLRm8+q6fmLUU7DfO6Q==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  </head>
+
+  <body>
+    <!-- nav bar start -->
+<nav x-data="{ open: false }" class="fixed top-0 left-0 right-0 z-50 backdrop-blur bg-white/30 shadow-md">
+  <div class="navbar px-4 py-3 max-w-7xl mx-auto">
+    
+    <div class="navbar-start">
+      <div class="nav-logo">
+        <img src="./images/nav logo.png" alt="Logo"
+          class="h-12 w-auto rounded-md " />
+      </div>
+    </div>
+
+    <div class="navbar-center hidden lg:flex">
+      <ul class="menu menu-horizontal px-1 text-base font-semibold space-x-6">
+        <li><a href="#" class="hover:text-primary">Home</a></li>
+        <li><a href="#" class="hover:text-primary">About</a></li>
+        <li><a href="#" class="hover:text-primary">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="lg:hidden navbar-end">
+      <button @click="open = !open" class="btn btn-sm md:btn-md">
+        <i :class="open ? 'ri-close-line' : 'ri-menu-3-fill'" class="text-xl transition-all"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  <div
+    x-show="open"
+    @click.outside="open = false"
+    x-transition
+    class="lg:hidden absolute top-full left-0 right-0 bg-white/90 shadow-md backdrop-blur-sm z-40"
+  >
+    <ul class="flex flex-col items-center space-y-4 py-4 text-base font-semibold">
+      <li><a href="#" class="hover:text-primary" @click="open = false">Home</a></li>
+      <li><a href="#" class="hover:text-primary" @click="open = false">About</a></li>
+      <li><a href="#" class="hover:text-primary" @click="open = false">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+    <!-- nav bar end  -->
+
+    <!-- Slider start -->
+    <div class="carousel w-full">
+      <div id="slide1" class="carousel-item relative w-full">
+        <img src="./images/slider1.png" class="w-full h-150 sliderimg" />
+        <div
+          class="absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-[2px] z-10"
+        >
+          <h1
+            class="text-white text-4xl md:text-6xl font-bold text-center px-4"
+          >
+            Your Ingredients, Our Recipes
+          </h1>
+        </div>
+
+        <div
+          class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between z-20"
+        >
+          <a href="#slide4" class="btn btn-circle">❮</a>
+          <a href="#slide2" class="btn btn-circle">❯</a>
+        </div>
+      </div>
+      <div id="slide2" class="carousel-item relative w-full">
+        <img src="./images/slider2.png" class="w-full h-150 sliderimg" />
+        <div
+          class="absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-[2px] z-10"
+        >
+          <h1
+            class="text-white text-4xl md:text-6xl font-bold text-center px-4"
+          >
+            Jo Hai Ghar Mein, Wohi Hai Khaas
+          </h1>
+        </div>
+
+        <div
+          class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between z-20"
+        >
+          <a href="#slide1" class="btn btn-circle">❮</a>
+          <a href="#slide3" class="btn btn-circle">❯</a>
+        </div>
+      </div>
+      <div id="slide3" class="carousel-item relative w-full">
+        <img src="./images/slider3.png" class="w-full h-150 sliderimg" />
+        <div
+          class="absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-[2px] z-10"
+        >
+          <h1
+            class="text-white text-4xl md:text-6xl font-bold text-center px-4"
+          >
+             Tech for Your Tastebuds
+          </h1>
+        </div>
+
+        <div
+          class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between z-20"
+        >
+          <a href="#slide2" class="btn btn-circle">❮</a>
+          <a href="#slide4" class="btn btn-circle">❯</a>
+        </div>
+      </div>
+      <div id="slide4" class="carousel-item relative w-full">
+        <img src="./images/slider4.png" class="w-full h-150 sliderimg" />
+        <div
+          class="absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-[2px] z-10"
+        >
+          <h1
+            class="text-white text-4xl md:text-6xl font-bold text-center px-4"
+          >
+            Desi Recipes. Zero Guesswork.
+          </h1>
+        </div>
+
+        <div
+          class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between z-20"
+        >
+          <a href="#slide3" class="btn btn-circle">❮</a>
+          <a href="#slide1" class="btn btn-circle">❯</a>
+        </div>
+      </div>
+    </div>
+    <!-- Slider end -->
+
+    <!-- About start -->
+   <section id="about"   data-aos="fade-up" data-aos-delay="100" class="bg-[#FBD786] py-16 px-6">
+  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10">
+    
+    <div class="flex-1 text-center md:text-left">
+      <h2 class="text-4xl font-bold mb-6 text-dark">About Us</h2>
+      <p class="text-lg mb-4 text-base-content">
+        Ever stared at your kitchen shelf thinking, 
+        <span class="italic text-success">"Yaar, cook kya?"</span>
+      </p>
+      <p class="text-base-content">
+        Whether you’ve got leftover rotis, a lonely potato, or just some masalas in your rack, 
+        <strong class="text-info">Yaar, Cook Kya?</strong> helps you discover easy-to-make, home-style recipes without fancy jargon or grocery trips.
+      </p>
+    </div>
+
+    <!-- Flip Card -->
+    <div class="flex-1 flex justify-center">
+      <div class="flip-card w-64 h-80">
+        <div class="flip-card-inner">
+          <div class="flip-card-front bg-white rounded-lg shadow-lg overflow-hidden">
+            <img src="./images/about1.jpg" alt="Cooking" class="w-full h-full object-cover">
+          </div>
+          <div class="flip-card-back bg-orange-100 text-center flex flex-col justify-center items-center p-4 rounded-lg">
+            <h1 class="animate-fade-in-up text-dark text-4xl md:text-3xl font-bold text-center px-4"> Your Ingredients,Our Recipes</h1>
+            <p class="text-sm text-gray-700 mt-2">Explore simple meals with what you already have at home!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+    <!-- About end -->
+
+    <!-- Ing picker start -->
+<div class="bg-white py-20 px-4">
+  <div class="container mx-auto text-gray-800">
+    <header class="text-center mb-12">
+      <h1 class="text-4xl font-bold mb-2">Add Your Ingredients</h1>
+      <p class="text-lg text-gray-600">Enter 3 ingredients you have, and get delicious recipe suggestions!</p>
+    </header>
+
+    <div class="max-w-md mx-auto bg-white rounded-2xl shadow-2xl p-6 mb-12 transition hover:scale-[1.02] duration-300 border border-gray-200">
+      <form id="recipeForm" class="space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div>
+            <label for="ingredient1" class="block text-sm font-semibold mb-1 text-gray-700">Ingredient 1</label>
+            <input type="text" id="ingredient1" required 
+              class="w-full px-4 py-2 bg-gray-100 text-black rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400">
+          </div>
+          <div>
+            <label for="ingredient2" class="block text-sm font-semibold mb-1 text-gray-700">Ingredient 2</label>
+            <input type="text" id="ingredient2" required 
+              class="w-full px-4 py-2 bg-gray-100 text-black rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400">
+          </div>
+          <div>
+            <label for="ingredient3" class="block text-sm font-semibold mb-1 text-gray-700">Ingredient 3</label>
+            <input type="text" id="ingredient3" required 
+              class="w-full px-4 py-2 bg-gray-100 text-black rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400">
+          </div>
+        </div>
+
+        <div>
+          <button type="submit" 
+            class="w-full btn bg-yellow-400 text-black hover:bg-yellow-500 font-bold shadow-md">
+            Find Recipes
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div id="loading" class="hidden text-center my-8">
+      <div class="loading-spinner mx-auto mb-4"></div>
+      <p class="text-gray-600">Generating delicious recipes for you...</p>
+    </div>
+
+    <div id="results" class="hidden">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-6">Generated Recipes</h2>
+      <div id="recipeContainer" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+
+    <div id="error" class="hidden max-w-md mx-auto bg-red-100 border border-red-300 text-red-800 px-4 py-3 rounded-md">
+      <p>Error generating recipes. Please try again with different ingredients.</p>
+    </div>
+  </div>
+</div>
+    <!-- Ing picker end -->
+
+
+
+    <!-- Contact Start  -->
+ <section class="relative bg-[url('./images/contact.jpg')] bg-cover bg-center bg-no-repeat py-20 px-4">
+  <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+  <div class="relative max-w-md mx-auto z-10">
+    <div class="backdrop-blur-md bg-white/10 shadow-2xl border border-white/20 rounded-xl p-8 text-white">
+
+      <h2 class="text-3xl font-bold mb-6 text-center flex items-center justify-center gap-2">
+        <span><i class="ri-mail-line text-4xl"></i></span>
+        <span>Contact Us</span>
+      </h2>
+
+      <form class="space-y-5">
+        <!-- Name -->
+        <div>
+          <label for="name" class="block text-sm font-medium mb-1 text-white">Name</label>
+          <input type="text" id="name" placeholder="Your name"
+            class="w-full px-4 py-2 rounded-md bg-white/20 placeholder-white/70 text-white border border-white/30 focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+        </div>
+
+        <!-- Email -->
+        <div>
+          <label for="email" class="block text-sm font-medium mb-1 text-white">Email</label>
+          <input type="email" id="email" placeholder="your@email.com"
+            class="w-full px-4 py-2 rounded-md bg-white/20 placeholder-white/70 text-white border border-white/30 focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+        </div>
+
+        <!-- Message -->
+        <div>
+          <label for="message" class="block text-sm font-medium mb-1 text-white">Message</label>
+          <textarea id="message" placeholder="Your message here" rows="4"
+            class="w-full px-4 py-2 rounded-md bg-white/20 placeholder-white/70 text-white border border-white/30 focus:outline-none focus:ring-2 focus:ring-yellow-400"></textarea>
+        </div>
+
+        <!-- Button -->
+        <div class="text-center">
+          <button type="submit"
+            class="btn bg-yellow-400 hover:bg-yellow-500 text-black font-semibold shadow-md w-full md:w-auto">
+            Send Message
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+    <!-- Contact End -->
+
+    <!-- Footer Start -->
+   <footer class="footer footer-center bg-gray-900 text-gray-300 rounded-none p-6 md:p-10">
+  <!-- Navigation Links -->
+  <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 text-sm">
+    <a href="#" class="link link-hover hover:text-yellow-400 transition">About us</a>
+    <a href="#" class="link link-hover hover:text-yellow-400 transition">Contact</a>
+  </div>
+
+  <!-- Social Icons -->
+  <div class="flex justify-center gap-6 mt-4">
+    <a href="#" aria-label="Twitter" class="hover:text-yellow-400 transition">
+      <i class="ri-twitter-line text-xl md:text-2xl"></i>
+    </a>
+    <a href="#" aria-label="YouTube" class="hover:text-yellow-400 transition">
+      <i class="ri-youtube-line text-xl md:text-2xl"></i>
+    </a>
+    <a href="#" aria-label="Facebook" class="hover:text-yellow-400 transition">
+      <i class="ri-facebook-circle-line text-xl md:text-2xl"></i>
+    </a>
+  </div>
+
+  <!-- Footer Bottom -->
+  <aside class="mt-6">
+    <p class="text-xs md:text-sm text-gray-400">
+      © <span id="current-year"></span> YaarCookKya? — All rights reserved
+    </p>
+  </aside>
+</footer>
+    <!-- Footer End -->
+     
+    <!-- Links -->
+     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+      <script>
+         AOS.init();
+      </script>
+     <script src="./JS/animation.js"></script>
+    <script src="./JS/jquery-3.7.1.min.js"></script>
+    <script src="./JS/script.js"></script>
+  </body>
+</html>
