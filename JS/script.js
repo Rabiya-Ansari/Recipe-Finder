@@ -29,53 +29,27 @@ document.getElementById('recipeForm').addEventListener('submit', async function(
             }
         });
 
-        async function generateRecipes(ingredients) {
-        
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            
-            return [
-                {
-                    name: `Creamy ${ingredients[0]} and ${ingredients[1]} Pasta`,
-                    description: `A delicious pasta dish combining ${ingredients[0]}, ${ingredients[1]}, and ${ingredients[2]} for a creamy, satisfying meal.`,
-                    ingredients: [`200g pasta`, `1 cup ${ingredients[0]}`, `1/2 cup ${ingredients[1]}`, `1/4 cup ${ingredients[2]}`, `2 cloves garlic`, `Salt and pepper to taste`],
-                    instructions: [
-                        "Cook pasta according to package instructions.",
-                        `In a pan, sauté garlic, then add ${ingredients[0]} and ${ingredients[1]}.`,
-                        `Mix in ${ingredients[2]} and season well.`,
-                        "Combine with cooked pasta and serve hot."
-                    ],
-                    prepTime: "10 mins",
-                    cookTime: "15 mins"
-                },
-                {
-                    name: `${ingredients[0]} and ${ingredients[1]} Salad with ${ingredients[2]} Dressing`,
-                    description: `A fresh and healthy salad featuring ${ingredients[0]} and ${ingredients[1]}, topped with a ${ingredients[2]}-based dressing.`,
-                    ingredients: [`2 cups mixed greens`, `1 cup ${ingredients[0]}`, `1/2 cup ${ingredients[1]}`, `3 tbsp ${ingredients[2]}`, `1 tbsp olive oil`, `1 tbsp lemon juice`],
-                    instructions: [
-                        "Wash and dry the greens.",
-                        `Chop ${ingredients[0]} and ${ingredients[1]} into bite-sized pieces.`,
-                        `Whisk together ${ingredients[2]}, olive oil and lemon juice for dressing.`,
-                        "Toss all ingredients together and serve."
-                    ],
-                    prepTime: "15 mins",
-                    cookTime: "0 mins"
-                },
-                {
-                    name: `Quick ${ingredients[0]} ${ingredients[1]} Stir Fry with ${ingredients[2]}`,
-                    description: `An easy weeknight stir fry combining ${ingredients[0]}, ${ingredients[1]}, and ${ingredients[2]} for a flavorful dish.`,
-                    ingredients: [`300g ${ingredients[0]}`, `100g ${ingredients[1]}`, `2 tbsp ${ingredients[2]}`, `1 onion`, `2 cloves garlic`, `1 tbsp soy sauce`],
-                    instructions: [
-                        `Chop ${ingredients[0]} and ${ingredients[1]} into uniform pieces.`,
-                        "Sauté onion and garlic until fragrant.",
-                        `Add ${ingredients[0]} and ${ingredients[1]}, stir fry for 5 minutes.`,
-                        `Add ${ingredients[2]} and soy sauce, cook for another 2 minutes.`,
-                        "Serve hot with rice."
-                    ],
-                    prepTime: "10 mins",
-                    cookTime: "10 mins"
-                }
-            ];
+async function generateRecipes(ingredients) {
+    const apiKey = '1f64d6f31a2e478c88c7edf23f17f45d'; 
+    const ingredientString = ingredients.join(','); 
+    try {
+        const response = await fetch(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredientString}&apiKey=${apiKey}`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
+        const data = await response.json();
+        
+        return data.map(recipe => ({
+            name: recipe.title,
+            description: `A delicious recipe featuring ${ingredients.join(', ')}.`,
+            ingredients: recipe.usedIngredients.map(ing => `${ing.amount} ${ing.unit} ${ing.name}`),
+            instructions: ["Instructions not available from API."], 
+        }));
+    } catch (error) {
+        console.error('Error fetching recipes:', error);
+        throw error; 
+    }
+}
 
         function displayRecipes(recipes) {
             const container = document.getElementById('recipeContainer');
@@ -111,7 +85,4 @@ document.getElementById('recipeForm').addEventListener('submit', async function(
                 `;
                 container.appendChild(recipeEl);
             });
-        }
-
-
-
+         }
